@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>InterviewFroge — AI-Powered Interview Prep</title>
+  <!-- SEO tags -->
+  <meta name="description" content="Prepare for tech interviews with AI-generated questions, single-pass evaluations, and personalized resume-based feedback.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐸</text></svg>">
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container header-container">
+      <a href="#" class="logo lnk-goto-home">
+        <div class="logo-icon">F</div>
+        Interview<span>Froge</span>
+      </a>
+      <div class="header-actions">
+        <button class="nav-link" id="nav-username-display" style="display: none;" aria-label="View user profile">
+          <svg class="user-icon" viewBox="0 0 24 24" width="18" height="18">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path>
+            <circle cx="12" cy="7" r="4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></circle>
+          </svg>
+        </button>
+        <button class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Toggle light/dark theme" title="Toggle theme">
+          <!-- Sun Icon (shown in light mode) -->
+          <svg class="sun-icon" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2"></path>
+            <path d="M12 20v2"></path>
+            <path d="M4.93 4.93l1.41 1.41"></path>
+            <path d="M17.66 17.66l1.41 1.41"></path>
+            <path d="M2 12h2"></path>
+            <path d="M20 12h2"></path>
+            <path d="M6.34 17.66l-1.41 1.41"></path>
+            <path d="M19.07 4.93l-1.41 1.41"></path>
+          </svg>
+          <!-- Moon Icon (shown in dark mode) -->
+          <svg class="moon-icon" viewBox="0 0 24 24">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+          </svg>
+        </button>
+        <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
+      <nav id="nav-menu">
+        <a href="#" class="nav-link lnk-goto-home">Home</a>
+        <a href="#" class="nav-link" id="nav-dashboard-link" style="display: none;">Dashboard</a>
+        <a href="#" class="btn btn-secondary lnk-goto-auth" id="nav-auth-btn">Sign In</a>
+        <button class="btn btn-secondary" id="nav-logout-btn" style="display: none;">
+          Logout
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- CONTENT WRAPPER -->
+  <main class="content container">
+
+    <!-- VIEW: HOME -->
+    <div id="view-home" class="view">
+      <div class="hero-section">
+        <div class="badge-glowing">🧠 Powered by Cloud AI Models</div>
+        <h1 class="hero-title">Practice Interviews.<br>Conquer Your Fear.</h1>
+        <p class="hero-subtitle">
+          Practice unique, AI-generated questions tailored to your target role or resume, and get deep feedback in a single pass. Free, instant, and secure.
+        </p>
+        <div class="hero-ctas">
+          <button class="btn btn-primary btn-accent lnk-goto-setup">Start Free Interview</button>
+          <button class="btn btn-secondary lnk-goto-auth" id="home-cta-guest">Sign Up for Dashboard</button>
+          <button class="btn btn-secondary lnk-goto-dashboard" id="home-cta-user" style="display: none;">Go to Dashboard</button>
+        </div>
+      </div>
+
+      <!-- STATS SECTION -->
+      <div class="stats-section">
+        <div class="stats-grid">
+          <div class="stat-card glass">
+            <div class="stat-number" id="stat-interviews">15,000+</div>
+            <div class="stat-label">Interviews Practiced</div>
+          </div>
+          <div class="stat-card glass">
+            <div class="stat-number" id="stat-satisfaction">4.9/5</div>
+            <div class="stat-label">User Satisfaction</div>
+          </div>
+          <div class="stat-card glass">
+            <div class="stat-number" id="stat-accuracy">98.4%</div>
+            <div class="stat-label">Feedback Accuracy</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="features-section-header">
+        <h2 class="section-title">Intelligent Platform Capabilities</h2>
+        <p class="section-subtitle">Leverage cutting-edge AI technology to practice, evaluate, and excel.</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card glass">
+          <div class="feature-header">
+            <div class="feature-icon">✨</div>
+            <h3>Dynamic Generation</h3>
+          </div>
+          <p>Questions are synthesized on-the-fly. No pre-defined question pools. You get a fresh evaluation every time.</p>
+        </div>
+        <div class="feature-card glass">
+          <div class="feature-header">
+            <div class="feature-icon">⚡</div>
+            <h3>Single-Pass Evaluation</h3>
+          </div>
+          <p>Submit all answers in one batch. Minimizes token consumption and produces an immediate, unified score card.</p>
+        </div>
+        <div class="feature-card glass">
+          <div class="feature-header">
+            <div class="feature-icon">📄</div>
+            <h3>Resume Intelligence</h3>
+          </div>
+          <p>Attach or paste your resume. Our local parsing extracts core skills to frame custom projects and questions.</p>
+        </div>
+      </div>
+
+      <!-- WORKFLOW SECTION -->
+      <div class="workflow-section-header">
+        <h2 class="section-title">How It Works</h2>
+        <p class="section-subtitle">Three simple steps to supercharge your interview performance.</p>
+      </div>
+
+      <div class="workflow-steps">
+        <div class="step-card glass">
+          <div class="step-badge">01</div>
+          <div class="step-content">
+            <h3>Configure Session</h3>
+            <p>Select your target role, experience level, and optional resume. Our AI customizes the session just for you.</p>
+          </div>
+        </div>
+        <div class="step-card glass">
+          <div class="step-badge">02</div>
+          <div class="step-content">
+            <h3>Answer Questions</h3>
+            <p>Go through the generated questions at your own pace. Write detailed responses to show your experience.</p>
+          </div>
+        </div>
+        <div class="step-card glass">
+          <div class="step-badge">03</div>
+          <div class="step-content">
+            <h3>Get AI Feedback</h3>
+            <p>Receive a unified scorecard with a technical score, key strengths, improvement areas, and recommended study topics.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ SECTION -->
+      <div class="faq-section-header">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <p class="section-subtitle">Got questions? We have answers.</p>
+      </div>
+
+      <div class="faq-accordion">
+        <div class="faq-item glass">
+          <button class="faq-question">
+            <span>How does the AI grade my answers?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              <p>Our advanced LLM judges parse your answers against the context of the job description, industry standards, and your experience level. It evaluates technical accuracy, completeness, and structure in a single token-optimized pass.</p>
+            </div>
+          </div>
+        </div>
+        <div class="faq-item glass">
+          <button class="faq-question">
+            <span>Is InterviewFroge completely free?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              <p>Yes! Our basic tier is 100% free with no limits on practice sessions. Registered users also get access to the dashboard history analytics and aggregated recommendations.</p>
+            </div>
+          </div>
+        </div>
+        <div class="faq-item glass">
+          <button class="faq-question">
+            <span>Is my resume data safe?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              <p>Absolutely. Resumes are processed dynamically to generate relevant questions. We do not store your raw resumes on our servers, ensuring your personal details and employment history remain completely secure and private.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW: AUTH -->
+    <div id="view-auth" class="view">
+      <div class="auth-container glass">
+        <div class="auth-header">
+          <h2>Welcome to InterviewFroge</h2>
+          <p>Sign in to save scores and track dashboard analytics</p>
+        </div>
+        <div class="auth-tabs">
+          <button class="auth-tab active" id="auth-tab-login">Login</button>
+          <button class="auth-tab" id="auth-tab-register">Register</button>
+        </div>
+
+        <!-- Login Form -->
+        <form id="login-form">
+          <div class="form-group">
+            <label for="login-email">Email Address</label>
+            <input type="email" id="login-email" class="form-input" required placeholder="name@company.com">
+          </div>
+          <div class="form-group">
+            <label for="login-password">Password</label>
+            <input type="password" id="login-password" class="form-input" required placeholder="••••••••">
+          </div>
+          <div id="login-error" class="form-error">Incorrect credentials.</div>
+          <button type="submit" class="btn btn-primary auth-submit-btn">Login</button>
+        </form>
+
+        <!-- Register Form -->
+        <form id="register-form" style="display: none;">
+          <div class="form-group">
+            <label for="reg-username">Username</label>
+            <input type="text" id="reg-username" class="form-input" placeholder="johndoe">
+          </div>
+          <div class="form-group">
+            <label for="reg-email">Email Address</label>
+            <input type="email" id="reg-email" class="form-input" placeholder="name@company.com">
+          </div>
+          <div class="form-group">
+            <label for="reg-password">Password</label>
+            <input type="password" id="reg-password" class="form-input" placeholder="At least 6 characters">
+          </div>
+          <div id="reg-error" class="form-error">Registration failed.</div>
+          <button type="submit" class="btn btn-primary auth-submit-btn">Create Account</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- VIEW: SETUP -->
+    <div id="view-setup" class="view">
+      <div class="setup-container glass">
+        <button class="setup-close-btn" id="setup-close-btn" aria-label="Close setup">&times;</button>
+        <div class="setup-title">
+          <h2>Configure Practice Session</h2>
+          <p>Set role, experience level, and optionally upload a resume to target skills.</p>
+        </div>
+
+        <!-- Role Select -->
+        <div class="form-group" style="margin-bottom: 24px;">
+          <label>Target Interview Role</label>
+          <div class="role-selector-grid">
+            <div class="role-option" data-role="Python Developer">Python Dev</div>
+            <div class="role-option" data-role="Backend Engineer">Backend Eng</div>
+            <div class="role-option" data-role="Frontend Engineer">Frontend Eng</div>
+            <div class="role-option" data-role="Fullstack Developer">Fullstack Dev</div>
+            <div class="role-option" data-role="custom">Custom...</div>
+          </div>
+          <div id="custom-role-container" style="display: none; margin-top: 10px;">
+            <input type="text" id="custom-role-input" class="form-input" placeholder="e.g. FastAPI Engineer, DevOps Specialist">
+          </div>
+        </div>
+
+        <!-- Experience Select -->
+        <div class="form-group" style="margin-bottom: 24px;">
+          <label>Experience Level</label>
+          <div class="experience-grid">
+            <div class="experience-option" data-exp="Fresher">Fresher</div>
+            <div class="experience-option" data-exp="1-3 Years">1-3 Yrs</div>
+            <div class="experience-option" data-exp="3-5 Years">3-5 Yrs</div>
+            <div class="experience-option" data-exp="Senior (5+ Years)">Senior</div>
+          </div>
+        </div>
+
+        <!-- Interview Type Select -->
+        <div class="form-group" style="margin-bottom: 24px;">
+          <label>Interview Focus</label>
+          <div class="type-grid">
+            <div class="type-option" data-type="Technical">Technical</div>
+            <div class="type-option" data-type="HR">HR Behavioral</div>
+            <div class="type-option" data-type="Mixed">Mixed</div>
+          </div>
+        </div>
+
+        <!-- Resume Intelligence Mode -->
+        <div class="form-group" style="margin-bottom: 30px;">
+          <label>Resume Intelligence (Optional)</label>
+          <div class="resume-uploader" id="resume-uploader">
+            <div class="resume-uploader-icon">📄</div>
+            <p id="resume-status-text" style="font-weight: 600; font-size: 0.95rem; margin-bottom: 4px;">
+              Upload Resume text file (.txt)
+            </p>
+            <p style="font-size: 0.8rem; color: var(--text-secondary);">
+              Drag and drop or click to browse
+            </p>
+          </div>
+          <input type="file" id="resume-file-input" class="hidden-file-input" accept=".txt">
+          
+          <div style="text-align: center; margin-top: 12px;">
+            <button class="btn btn-secondary" id="btn-toggle-paste" style="font-size: 0.8rem; padding: 6px 12px;">
+              Or Paste Plain Text
+            </button>
+          </div>
+          <textarea id="resume-textarea" class="resume-textarea" placeholder="Paste your resume contents (skills, projects, experience) here..."></textarea>
+        </div>
+
+        <button class="btn btn-primary btn-accent" id="start-setup-btn" style="width: 100%; padding: 14px;">
+          Begin Practice Session
+        </button>
+      </div>
+    </div>
+
+    <!-- VIEW: SESSION -->
+    <div id="view-session" class="view">
+      <div class="session-container">
+        <div class="progress-header">
+          <span class="progress-count" id="progress-text">Question 1 of 5</span>
+          <span class="progress-timer">⏱ Text Interview</span>
+        </div>
+        <div class="progress-bar-container">
+          <div class="progress-bar-fill" id="progress-fill"></div>
+        </div>
+
+        <!-- Question Box -->
+        <div class="question-card glass">
+          <h3 id="question-text">Generating question...</h3>
+        </div>
+
+        <!-- Answer Box -->
+        <div class="answer-card glass">
+          <textarea id="answer-textarea" class="answer-textarea" placeholder="Type your detailed response here..."></textarea>
+          <div class="answer-char-counter" id="char-counter">0 characters</div>
+        </div>
+
+        <div class="session-footer">
+          <button class="btn btn-secondary" id="prev-question-btn" style="display: none;">
+            Previous
+          </button>
+          <div style="flex-grow: 1;"></div>
+          <button class="btn btn-primary" id="next-question-btn">Next Question</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW: LOADING SCREEN -->
+    <div id="view-loading" class="view">
+      <div class="loading-view glass">
+        <div class="loading-spinner"></div>
+        <h3>Evaluating Answers</h3>
+        <p>Our single-pass AI model is reviewing your responses, calculating scores, and structuring key metrics...</p>
+        
+        <div style="margin-top: 40px; padding: 0 40px;">
+          <div class="skeleton-text" style="width: 100%"></div>
+          <div class="skeleton-text" style="width: 85%"></div>
+          <div class="skeleton-text" style="width: 90%"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW: REPORT -->
+    <div id="view-report" class="view">
+      <div class="report-container">
+        
+        <!-- Guest Banner notice -->
+        <div class="guest-notice glass" id="report-guest-notice" style="display: none;">
+          <div class="guest-notice-text">
+            <h4>Sign Up to Log Analytics</h4>
+            <p>Guest sessions are stateless. Register to store this report, view aggregate skill trends, and monitor historical progress.</p>
+          </div>
+          <button class="btn btn-primary lnk-goto-auth" style="font-size: 0.85rem; padding: 8px 16px;">
+            Create Account
+          </button>
+        </div>
+
+        <div class="report-header">
+          <h2>Session Score Card</h2>
+          <p>Single-pass AI evaluation completed successfully</p>
+        </div>
+
+        <!-- Score Dial and metrics -->
+        <div class="score-grid">
+          <div class="score-card glass">
+            <div class="score-dial">
+              <svg class="score-circle-svg">
+                <circle class="score-circle-bg" cx="60" cy="60" r="56"></circle>
+                <circle class="score-circle-fill" id="report-score-fill" cx="60" cy="60" r="56"></circle>
+              </svg>
+              <div class="score-value" id="report-score-text">-</div>
+            </div>
+            <div class="rating-label">Overall Score</div>
+          </div>
+
+          <div class="score-card glass">
+            <div class="rating-value"><span id="report-technical-score">-</span><span>/10</span></div>
+            <div class="rating-label">Technical Knowledge</div>
+          </div>
+
+          <div class="score-card glass">
+            <div class="rating-value"><span id="report-problemsolving-score">-</span><span>/10</span></div>
+            <div class="rating-label">Problem Solving</div>
+          </div>
+        </div>
+
+        <!-- Detail columns: Strengths / Weaknesses -->
+        <div class="detail-columns">
+          <div class="detail-panel panel-strengths glass">
+            <h3><span>✔</span> Key Strengths</h3>
+            <ul class="bullets-list" id="report-strengths">
+              <!-- Dynamically populated -->
+            </ul>
+          </div>
+
+          <div class="detail-panel panel-weaknesses glass">
+            <h3><span>✕</span> Areas for Improvement</h3>
+            <ul class="bullets-list" id="report-weaknesses">
+              <!-- Dynamically populated -->
+            </ul>
+          </div>
+        </div>
+
+        <!-- Recommended topics study cards -->
+        <div class="recommendations-card glass">
+          <h3>📚 Recommended Focus Topics</h3>
+          <div class="recommendations-grid" id="report-recommendations">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px;">
+          <button class="btn btn-primary" id="report-close-btn" style="padding: 12px 30px;">
+            Return to Dashboard
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- VIEW: DASHBOARD -->
+    <div id="view-dashboard" class="view">
+      <div class="dashboard-container">
+        
+        <div class="dashboard-header">
+          <div class="dashboard-title">
+            <h2>Honing Dashboard</h2>
+            <p>Monitor your performance, review skill breakdowns, and view recommended studies.</p>
+          </div>
+          <button class="btn btn-primary btn-accent lnk-goto-setup">Start New Interview</button>
+        </div>
+
+        <!-- Metrics widgets -->
+        <div class="metrics-grid">
+          <div class="metric-card glass">
+            <div class="metric-icon">📁</div>
+            <div class="metric-info">
+              <h4 id="dash-total-count">-</h4>
+              <p>Total Practice</p>
+            </div>
+          </div>
+
+          <div class="metric-card glass">
+            <div class="metric-icon">📈</div>
+            <div class="metric-info">
+              <h4 id="dash-avg-score">-</h4>
+              <p>Average Score</p>
+            </div>
+          </div>
+
+          <div class="metric-card glass">
+            <div class="metric-icon">🏆</div>
+            <div class="metric-info">
+              <h4 id="dash-best-score">-</h4>
+              <p>Best Score</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dashboard Layout columns -->
+        <div class="dashboard-layout">
+          
+          <!-- History Timeline -->
+          <div class="timeline-card glass">
+            <h3>Timeline Activity</h3>
+            <div class="timeline" id="dash-history-timeline">
+              <!-- History timeline items are populated dynamically -->
+            </div>
+          </div>
+
+          <!-- Side panels: Skill stats & recommendations -->
+          <div class="side-panel">
+            
+            <div class="chips-panel glass">
+              <h3>Strong Areas (Avg &ge; 75)</h3>
+              <div class="chips-container" id="dash-strong-chips">
+                <!-- Dynamically populated -->
+              </div>
+            </div>
+
+            <div class="chips-panel glass">
+              <h3>Weak Topics (Avg &lt; 75)</h3>
+              <div class="chips-container" id="dash-weak-chips">
+                <!-- Dynamically populated -->
+              </div>
+            </div>
+
+            <div class="chips-panel glass">
+              <h3>Aggregated Recommendations</h3>
+              <div class="recommendations-grid" id="dash-recommendations-list" style="grid-template-columns: 1fr;">
+                <!-- Dynamically populated -->
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      &copy; 2026 InterviewFroge. All rights reserved. Cloud AI Abstraction Layer active.
+    </div>
+  </footer>
+
+  <!-- USER PROFILE MODAL -->
+  <div id="profile-modal" class="modal-backdrop" style="display: none;">
+    <div class="modal-content glass">
+      <div class="modal-header">
+        <h3>User Profile</h3>
+        <button class="modal-close-btn" id="profile-modal-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="profile-avatar">👤</div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="text" id="profile-email" class="form-input" disabled readonly style="opacity: 0.7; cursor: not-allowed;">
+        </div>
+        <div class="form-group">
+          <label for="profile-username">Username</label>
+          <input type="text" id="profile-username" class="form-input" placeholder="Enter new username">
+        </div>
+        <div id="profile-error" class="form-error"></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="profile-cancel-btn">Cancel</button>
+        <button class="btn btn-primary" id="profile-save-btn">Save Changes</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOGOUT CONFIRMATION MODAL -->
+  <div id="logout-confirm-modal" class="modal-backdrop" style="display: none;">
+    <div class="modal-content glass" style="max-width: 400px; text-align: center;">
+      <div class="modal-header" style="justify-content: center;">
+        <h3 style="color: var(--danger);">Confirm Logout</h3>
+      </div>
+      <div class="modal-body">
+        <div class="logout-icon" style="font-size: 3rem; margin-bottom: 15px;">👋</div>
+        <p>Are you sure you want to log out of InterviewFroge?</p>
+      </div>
+      <div class="modal-footer" style="justify-content: center; gap: 15px;">
+        <button class="btn btn-secondary" id="logout-cancel-btn" style="flex: 1;">Cancel</button>
+        <button class="btn btn-primary" id="logout-confirm-btn" style="background: var(--danger); color: white; box-shadow: 0 4px 14px 0 rgba(239, 68, 68, 0.25); flex: 1;">Logout</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="/static/js/api.js?v=1.0.2"></script>
+  <script src="/static/js/app.js?v=1.0.2"></script>
+</body>
+</html>
