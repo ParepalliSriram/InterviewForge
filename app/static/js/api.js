@@ -1,4 +1,4 @@
-// API Client for InterviewFroge backend
+// API Client for InterviewForge backend
 
 const API_BASE = "/api";
 

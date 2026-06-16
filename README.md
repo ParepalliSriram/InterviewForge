@@ -1,6 +1,6 @@
-# 🐸 InterviewFroge: AI-First Interview Preparation Platform
+# 🛠️ InterviewForge: AI-First Interview Preparation Platform
 
-InterviewFroge is a premium, AI-first interview preparation web application. It allows candidates to generate custom mock interview sessions tailored to their target role, experience level, and optionally, their resume contents. The platform leverages advanced LLM APIs to conduct and grade sessions, offering real-time custom feedback, candidate analytics, and recommended study paths.
+InterviewForge is a premium, AI-first interview preparation web application. It allows candidates to generate custom mock interview sessions tailored to their target role, experience level, and optionally, their resume contents. The platform leverages advanced LLM APIs to conduct and grade sessions, offering real-time custom feedback, candidate analytics, and recommended study paths.
 
 ---
 
@@ -114,10 +114,10 @@ Open `.env` and fill in the configuration details. You must provide at least one
 ```ini
 # MongoDB connection settings
 MONGODB_URI=mongodb://localhost:27017
-DATABASE_NAME=interview_froge
+DATABASE_NAME=interview_forge
 
 # Session signing secret key
-SECRET_KEY=supersecretkey_interview_froge_123!
+SECRET_KEY=supersecretkey_interview_forge_123!
 
 # AI Provider Configurations
 # Options: gemini, openai, claude, groq
