@@ -10,8 +10,8 @@ class Settings(BaseSettings):
     )
     
     MONGODB_URI: str = "mongodb://localhost:27017"
-    DATABASE_NAME: str = "interview_froge"
-    SECRET_KEY: str = "supersecretkey_interview_froge_123!"
+    DATABASE_NAME: str = "interview_forge"
+    SECRET_KEY: str = "supersecretkey_interview_forge_123!"
     PRIMARY_PROVIDER: str = "gemini"
     
     GEMINI_API_KEY: Optional[str] = None

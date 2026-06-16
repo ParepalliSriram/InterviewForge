@@ -1,4 +1,4 @@
-// App State Manager for InterviewFroge SPA
+// App State Manager for InterviewForge SPA
 
 document.addEventListener("DOMContentLoaded", () => {
     // ----------------------------------------------------

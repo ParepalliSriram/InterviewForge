@@ -91,7 +91,7 @@ async def submit_interview(
     if user_id_str:
         try:
             user_id = ObjectId(user_id_str)
-            final_score = int(report.get("final_score", 70))
+            final_score = int(report.get("final_score", 0))
             
             # 1. Store Interview Session metadata (excluding questions and answers)
             session_doc = {
@@ -108,8 +108,8 @@ async def submit_interview(
             # 2. Store Interview Report (No summary stored, matching user request comment)
             report_doc = {
                 "session_id": session_res.inserted_id,
-                "technical_score": int(report.get("technical_score", 7)),
-                "problem_solving_score": int(report.get("problem_solving_score", 7)),
+                "technical_score": int(report.get("technical_score", 0)),
+                "problem_solving_score": int(report.get("problem_solving_score", 0)),
                 "strengths": report.get("strengths", []),
                 "weaknesses": report.get("weaknesses", []),
                 "recommended_topics": report.get("recommended_topics", [])
@@ -134,9 +134,9 @@ async def submit_interview(
         "saved": saved,
         "session_id": session_id_str,
         "report": {
-            "technical_score": report.get("technical_score", 7),
-            "problem_solving_score": report.get("problem_solving_score", 7),
-            "final_score": report.get("final_score", 70),
+            "technical_score": report.get("technical_score", 0),
+            "problem_solving_score": report.get("problem_solving_score", 0),
+            "final_score": report.get("final_score", 0),
             "strengths": report.get("strengths", []),
             "weaknesses": report.get("weaknesses", []),
             "recommended_topics": report.get("recommended_topics", [])
@@ -163,7 +163,7 @@ async def update_user_analytics(db, user_id_str: str, topics_evaluated: dict):
         try:
             score_val = float(score)
         except (ValueError, TypeError):
-            score_val = 70.0
+            score_val = 0.0
 
         if topic_clean in topic_stats:
             stats = topic_stats[topic_clean]

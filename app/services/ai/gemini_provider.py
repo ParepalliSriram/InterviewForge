@@ -79,7 +79,40 @@ Interview Type: {interview_type}
 User Answers:
 {q_and_a_text}
 
-Provide a single-pass feedback report in this strict JSON format:
+Evaluation Guidelines:
+- CRITICAL: Assess how well and correctly each answer addresses its respective question. Perfect, relevant, and well-explained answers should receive high/full marks.
+- CRITICAL: Answers that are extremely brief (e.g., 'yes', 'no', 'okay', 'agree', 'skip', 'don't know', 'none'), irrelevant to the question, empty, or nonsensical must receive a score of 0 for that question/topic.
+- CRITICAL: For questions requiring explanations or descriptions (like "Describe a time...", "Explain standard...", "How do you handle..."), one-word or simple affirmative/negative answers (like "yes", "no", "okay") must be scored as 0. Do NOT award points for positive-sounding but empty answers.
+- CRITICAL: The overall "score" (0-100), "technical" rating (0-10), and "problem_solving" rating (0-10) must be a direct mathematical reflection of the answers' quality. Do not inflate scores. If all or most answers are irrelevant, extremely brief, or incorrect, the final scores must be 0 (or close to 0, e.g. <= 5).
+- CRITICAL: Keep feedback extremely brief to minimize token usage:
+  * Limit 'strengths', 'weaknesses', and 'recommended_topics' to a maximum of 2 items each. This is a strict limit.
+  * Keep each item under 10 words. Avoid verbose explanations.
+  * If the candidate provided no substantial answers, do NOT hallucinate strengths (e.g. do not say "Explains standard inheritance" if they only answered "yes"). Under strengths, list only one item: "None".
+
+Provide a single-pass feedback report in this strict JSON format.
+
+Example evaluation for a poor response:
+If the User Q&A was:
+"Question 1: Explain standard inheritance in Python.
+Answer 1: yes
+Question 2: Describe a time you resolved a performance bottleneck.
+Answer 2: okay"
+
+The corresponding JSON output would be:
+{{
+  "score": 0,
+  "technical": 0,
+  "problem_solving": 0,
+  "strengths": ["None"],
+  "weaknesses": ["Failed to explain Python inheritance", "Did not describe a performance bottleneck"],
+  "recommended_topics": ["Python inheritance", "Performance optimization"],
+  "topics_evaluated": {{
+     "Python Standard Inheritance": 0,
+     "Performance Bottleneck": 0
+  }}
+}}
+
+Generate the JSON report for the actual interview conforming to this schema:
 {{
   "score": <integer score from 0 to 100>,
   "technical": <integer rating out of 10>,
@@ -111,9 +144,9 @@ Make sure your JSON is valid, contains all required keys, and does not include e
                     data[r_key] = [] if isinstance(data.get(r_key), list) else 0
 
             # Ensure final_score exists (mapping score -> final_score)
-            data["final_score"] = int(data.get("score", 70))
-            data["technical_score"] = int(data.get("technical", 7))
-            data["problem_solving_score"] = int(data.get("problem_solving", 7))
+            data["final_score"] = int(data.get("score", 0))
+            data["technical_score"] = int(data.get("technical", 0))
+            data["problem_solving_score"] = int(data.get("problem_solving", 0))
             
             if "topics_evaluated" not in data:
                 data["topics_evaluated"] = {}

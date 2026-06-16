@@ -27,7 +27,7 @@ async def lifespan(app: FastAPI):
     Database.disconnect_db()
 
 app = FastAPI(
-    title="InterviewFroge",
+    title="InterviewForge",
     description="AI-first Interview Preparation Platform",
     version="1.0.0",
     lifespan=lifespan
@@ -46,7 +46,7 @@ app.add_middleware(
 app.add_middleware(
     SessionMiddleware,
     secret_key=settings.SECRET_KEY,
-    session_cookie="interview_froge_session",
+    session_cookie="interview_forge_session",
     max_age=3600 * 24 * 7,  # 7 days
     same_site="lax"
 )
@@ -66,7 +66,7 @@ async def read_index():
     index_path = os.path.join(static_dir, "index.html")
     if not os.path.exists(index_path):
         # Temporary placeholder if index.html is still missing during start
-        return {"message": "Welcome to InterviewFroge API. Frontend is being built."}
+        return {"message": "Welcome to InterviewForge API. Frontend is being built."}
     return FileResponse(index_path)
 
 @app.get("/{catchall:path}")
